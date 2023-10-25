@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
+  declarations: [ // register components, directives, pipes
     AppComponent
   ],
   imports: [
@@ -15,4 +15,5 @@ import { AppComponent } from './app.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+// this module knows everything
 export class AppModule { }
