@@ -1,0 +1,59 @@
+<!-- <p>Welcome to {{ hotelName }}</p> -->
+<hinv-root-header></hinv-root-header>
+<hinv-root-header></hinv-root-header>
+<hinv-root-header></hinv-root-header>
+
+<!--hidden has performance issue, if we have lots of hidden div
+use ngif instead
+-->
+<div [hidden]="hideNumOfRooms">
+  Number of Rooms:
+  <!--box syntax: [box]-->
+  <div [innerText]="numberOfRooms"></div>
+</div>
+<br />
+
+<!--
+    Optional Operator (?)
+    Nullish Coalescing Operator (??)
+-->
+<div>
+  AvailableRooms:
+  {{ rooms?.availableRooms ?? "No rooms" }}
+</div>
+
+<!-- {{ roomList | json }} -->
+
+<div *ngIf="selectedRoom">
+  {{ selectedRoom | json }}
+</div>
+
+<div>
+  <button class="button" (click)="addRoom()">Add Room</button>
+</div>
+
+<h1>
+    {{ getError$ | async}}
+</h1>
+
+<h1>
+    Number Of Rooms: {{ numOfRooms$ | async}}
+</h1>
+
+<!--ngif example
+better performance, as if igIf is false, the div will be deleted
+-->
+<div *ngIf="rooms$ | async as rooms">
+  <hinv-root-rooms-list
+    [roomList]="rooms"
+    [title]="title"
+    (selectedRoom)="selectRoom($event)"
+  ></hinv-root-rooms-list>
+</div>
+
+<!--banana sybtax: (banana)-->
+<button (click)="toggle()">Toggle</button>
+<br>
+<button (click)="editRoom()">Edit Room</button>
+<br>
+<button (click)="deleteRoom()">Delete Room</button>
