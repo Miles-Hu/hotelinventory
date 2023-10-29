@@ -3,6 +3,8 @@
 <hinv-root-header></hinv-root-header>
 <hinv-root-header></hinv-root-header>
 
+<router-outlet></router-outlet>
+
 <!--hidden has performance issue, if we have lots of hidden div
 use ngif instead
 -->
@@ -29,7 +31,7 @@ use ngif instead
 </div>
 
 <div>
-  <button class="button" (click)="addRoom()">Add Room</button>
+  <button class="button" routerLink='add'>Add Room</button>
 </div>
 
 <h1>
@@ -57,3 +59,4 @@ better performance, as if igIf is false, the div will be deleted
 <button (click)="editRoom()">Edit Room</button>
 <br>
 <button (click)="deleteRoom()">Delete Room</button>
+

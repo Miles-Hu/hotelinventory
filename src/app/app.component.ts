@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   name! : ElementRef;
 
   ngOnInit(): void {
-    this.name.nativeElement.innerText = 'Hilton Hotel';
+    //this.name.nativeElement.innerText = 'Hilton Hotel';
   }
 
   constructor(private initService: InitService) { 
