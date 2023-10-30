@@ -5,14 +5,24 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {path: 'employee', component: EmployeeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: '**', component: NotfoundComponent} // wildcard route
+  { path: 'employee', component: EmployeeComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'rooms',
+    loadChildren: () =>
+      import('./rooms/rooms.module').then((m) => m.RoomsModule),
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: 'booking',
+    loadChildren: () =>
+      import('./booking/booking.module').then((m) => m.BookingModule),
+  },
+  { path: '**', component: NotfoundComponent }, // wildcard route
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

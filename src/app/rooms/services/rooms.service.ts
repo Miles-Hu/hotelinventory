@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { shareReplay } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', // this is the default value, we can remove it
 })
 export class RoomsService {
   roomList: RoomList[] = [];
