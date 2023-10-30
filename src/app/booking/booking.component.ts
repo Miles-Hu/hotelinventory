@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'hinv-root-booking',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent {
-
+  constructor(private configService: ConfigService) { }
 }

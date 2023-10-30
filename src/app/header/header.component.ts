@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'hinv-root-header',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
 
   title = 'Welcome to Hotel Inventory System!';
+
+  constructor(private configService: ConfigService) { }
 
 }

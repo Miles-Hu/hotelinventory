@@ -4,6 +4,7 @@ import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { Observable, Subject, Subscription, catchError, map, of } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'hinv-root-rooms',
@@ -129,7 +130,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, OnDestroy
 
   selectedRoom? : RoomList;
 
-  constructor(private roomsService: RoomsService) {
+  constructor(private roomsService: RoomsService,
+    private configService: ConfigService) {
 
   }
   ngOnDestroy(): void {
