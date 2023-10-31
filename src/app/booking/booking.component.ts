@@ -55,4 +55,16 @@ export class BookingComponent implements OnInit {
       this.fb.group({ guestName: [''], age: new FormControl('') })
     );
   }
+
+  addPassport() {
+    this.bookingForm.addControl('passportNumber', new FormControl('pass123'));
+  }
+
+  deletePassport() {
+    this.bookingForm.removeControl('passportNumber');
+  }
+
+  deleteGuest(index: number) {
+    this.guests.removeAt(index);
+  }
 }

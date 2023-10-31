@@ -1,6 +1,20 @@
 <pre>{{ bookingForm?.value | json }}</pre>
 
 <form [formGroup]="bookingForm" (ngSubmit)="addBooking()">
+
+    <div>
+        <button mat-raised-button color="primary" type="button" (click)="addPassport()">Add Passport</button>
+    </div>
+
+    <div>
+        <button mat-raised-button color="primary" type="button" (click)="deletePassport()">Delete Passport</button>
+    </div>
+
+    <mat-form-field class="example-full-width" *ngIf="bookingForm.get('passportNumber')">
+        <mat-label>Passport Number</mat-label>
+        <input type="text" matInput formControlName="passportNumber" placeholder="Passport Number" />
+    </mat-form-field>
+
     <mat-form-field class="example-full-width">
         <mat-label>Room Id</mat-label>
         <input type="text" matInput formControlName="roomId" placeholder="Room Id" />
@@ -105,6 +119,10 @@
                             <input type="number" matInput formControlName="age" placeholder="Age" />
                         </mat-form-field>
                     </div>
+                    <div>
+                        <button mat-raised-button color="primary" type="button" (click)="deleteGuest(i)">Delete
+                            Guest</button>
+                    </div>
                 </div>
             </mat-expansion-panel>
         </mat-accordion>
@@ -114,18 +132,3 @@
         <button mat-raised-button color="primary">Book Room</button>
     </div>
 </form>
-
-<!-- : [''],
-      checkinDate: [''],
-      checkoutDate: [''],
-      bookingStatus: [''],
-      : [''],
-      bookingDate: [''],
-      : [''],
-      : [''],
-      guestAddress: [''],
-      guestCity: [''],
-      guestState: [''],
-      guestCountry: [''],
-      guestZipCode: [''],
-      guestCount: [''],-->
