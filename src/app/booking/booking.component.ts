@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../services/config.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'hinv-root-booking',
@@ -13,6 +13,11 @@ export class BookingComponent implements OnInit {
   // variable is non-null and non-undefined. This means that you're telling TypeScript to trust
   // that this variable will always have a value and it will never be `null` or `undefined`.
   bookingForm!: FormGroup;
+
+  get guests() {
+    // In TypeScript, the `get` keyword is used to define a getter method.
+    return this.bookingForm.get('guests') as FormArray;
+  }
 
   constructor(private configService: ConfigService, private fb: FormBuilder) {}
 
@@ -35,11 +40,19 @@ export class BookingComponent implements OnInit {
         country: [''],
         zipCode: [''],
       }),
-      guestCount: [''],
+      guests: this.fb.array([
+        this.fb.group({ guestName: [''], age: new FormControl('') }),
+      ]),
     });
   }
 
   addBooking() {
     console.log(this.bookingForm.getRawValue());
+  }
+
+  addGuest() {
+    this.guests.push(
+      this.fb.group({ guestName: [''], age: new FormControl('') })
+    );
   }
 }
