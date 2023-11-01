@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../services/config.service';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'hinv-root-booking',
@@ -19,19 +25,22 @@ export class BookingComponent implements OnInit {
     return this.bookingForm.get('guests') as FormArray;
   }
 
-  constructor(private configService: ConfigService, private fb: FormBuilder) {}
+  constructor(private configService: ConfigService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.bookingForm = this.fb.group({
-      roomId: new FormControl({ value: '2', disabled: true }),
-      guestEmail: [''],
+      roomId: new FormControl(
+        { value: '2', disabled: true },
+        { validators: [Validators.required] }
+      ),
+      guestEmail: ['', [Validators.required, Validators.email]],
       checkinDate: [''],
       checkoutDate: [''],
       bookingStatus: [''],
       bookingAmount: [''],
       bookingDate: [''],
       mobileNumber: [''],
-      guestName: [''],
+      guestName: ['', [Validators.required, Validators.minLength(5)]],
       address: this.fb.group({
         addressLine1: [''],
         addressLine2: [''],
@@ -43,6 +52,7 @@ export class BookingComponent implements OnInit {
       guests: this.fb.array([
         this.fb.group({ guestName: [''], age: new FormControl('') }),
       ]),
+      TnC: new FormControl(false, Validators.requiredTrue)
     });
   }
 
