@@ -42,7 +42,7 @@ export class BookingComponent implements OnInit {
       mobileNumber: [''],
       guestName: ['', [Validators.required, Validators.minLength(5)]],
       address: this.fb.group({
-        addressLine1: [''],
+        addressLine1: ['', Validators.required],
         addressLine2: [''],
         city: [''],
         state: [''],
@@ -50,7 +50,7 @@ export class BookingComponent implements OnInit {
         zipCode: [''],
       }),
       guests: this.fb.array([
-        this.fb.group({ guestName: [''], age: new FormControl('') }),
+        this.fb.group({ guestName: ['', Validators.required], age: new FormControl('') }),
       ]),
       TnC: new FormControl(false, Validators.requiredTrue)
     });
