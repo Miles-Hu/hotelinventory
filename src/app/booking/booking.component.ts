@@ -39,8 +39,8 @@ export class BookingComponent implements OnInit {
       bookingStatus: [''],
       bookingAmount: [''],
       bookingDate: [''],
-      mobileNumber: [''],
-      guestName: ['', [Validators.required, Validators.minLength(5)]],
+      mobileNumber: ['', { updateOn: 'blur' }],
+      guestName: ['', { updateOn: 'blur', Validators: [Validators.required, Validators.minLength(5)] }],
       address: this.fb.group({
         addressLine1: ['', Validators.required],
         addressLine2: [''],
@@ -53,6 +53,36 @@ export class BookingComponent implements OnInit {
         this.fb.group({ guestName: ['', Validators.required], age: new FormControl('') }),
       ]),
       TnC: new FormControl(false, Validators.requiredTrue)
+    }, { updateOn: 'blur' });
+    this.getBookingData();
+
+    this.bookingForm.valueChanges.subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  getBookingData() {
+    //this.bookingForm.setValue({
+    this.bookingForm.patchValue({
+      roomId: '2',
+      guestEmail: 'test@test.com',
+      checkinDate: new Date(),
+      //checkoutDate: '',
+      bookingStatus: '',
+      bookingAmount: '',
+      bookingDate: '',
+      mobileNumber: '',
+      guestName: 'Miles',
+      address: {
+        addressLine1: '',
+        addressLine2: '',
+        city: '',
+        state: '',
+        country: '',
+        zipCode: '',
+      },
+      guests: [],
+      TnC: false
     });
   }
 
@@ -68,7 +98,7 @@ export class BookingComponent implements OnInit {
       bookingDate: '',
       mobileNumber: '',
       guestName: '',
-      address:{
+      address: {
         addressLine1: '',
         addressLine2: '',
         city: '',
