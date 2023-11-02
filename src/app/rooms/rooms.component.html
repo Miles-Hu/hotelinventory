@@ -15,6 +15,11 @@ use ngif instead
 </div>
 <br />
 
+<pre>{{ priceFilter | json}}</pre>
+<div>
+  <input type="number" class="form-control" placeholder="Price" [formControl]="priceFilter">
+</div>
+
 <!--
     Optional Operator (?)
     Nullish Coalescing Operator (??)

@@ -5,6 +5,7 @@ import { RoomsService } from './services/rooms.service';
 import { Observable, Subject, Subscription, catchError, map, of } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 import { ConfigService } from '../services/config.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'hinv-root-rooms',
@@ -129,6 +130,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, OnDestroy
   roomList: RoomList[] = []
 
   selectedRoom? : RoomList;
+
+  priceFilter: FormControl = new FormControl('');
 
   constructor(private roomsService: RoomsService,
     private configService: ConfigService) {
