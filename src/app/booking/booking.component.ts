@@ -7,6 +7,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { BookingService } from './booking.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'hinv-root-booking',
@@ -25,12 +27,13 @@ export class BookingComponent implements OnInit {
     return this.bookingForm.get('guests') as FormArray;
   }
 
-  constructor(private configService: ConfigService, private fb: FormBuilder) { }
+  constructor(private configService: ConfigService, private fb: FormBuilder, private bookingService: BookingService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const id = this.router.snapshot.paramMap.get('id');
     this.bookingForm = this.fb.group({
       roomId: new FormControl(
-        { value: '2', disabled: true },
+        { value: id, disabled: true },
         { validators: [Validators.required] }
       ),
       guestEmail: ['', [Validators.required, Validators.email]],
@@ -54,7 +57,8 @@ export class BookingComponent implements OnInit {
       ]),
       TnC: new FormControl(false, Validators.requiredTrue)
     }, { updateOn: 'blur' });
-    this.getBookingData();
+    
+    //this.getBookingData();
 
     this.bookingForm.valueChanges.subscribe((data) => {
       console.log(data);
@@ -88,6 +92,9 @@ export class BookingComponent implements OnInit {
 
   addBooking() {
     console.log(this.bookingForm.getRawValue());
+    // this.bookingService.bookRoom(this.bookingForm.getRawValue()).subscribe((data) => {
+    //   console.log(data);
+    // });
     this.bookingForm.reset({
       roomId: '2',
       guestEmail: '',
